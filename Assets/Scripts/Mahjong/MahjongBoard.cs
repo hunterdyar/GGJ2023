@@ -8,7 +8,10 @@ namespace Mahjong
 {
     public class MahjongBoard : MonoBehaviour
     {
+        
         private Dictionary<Vector3Int, Space> _board;
+        public float aspectRatio;
+        [SerializeField] private float offset;
         [SerializeField] private Tile tilePrefab;
         [SerializeField] private List<Pattern> allPatterns;
         
@@ -245,6 +248,11 @@ namespace Mahjong
         public bool TryGetSpace(Vector3Int pos, out Space space)
         {
             return _board.TryGetValue(pos, out space);
+        }
+
+        public Vector3 GetWorldPosition(Vector3Int pos)
+        {
+            return transform.position+new Vector3(pos.x * aspectRatio, pos.y, -pos.z / 2f)+new Vector3(-1,1,0)*pos.z*offset;
         }
     }
 }

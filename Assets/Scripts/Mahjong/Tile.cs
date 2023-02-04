@@ -27,6 +27,7 @@ namespace Mahjong
             _spriteRenderer.sprite = pattern.Sprite;
             this.Space = space;
             transform.position = space.GetWorldPos();
+            _spriteRenderer.sortingOrder = space.pos.z;
         }
 
         public void Remove()

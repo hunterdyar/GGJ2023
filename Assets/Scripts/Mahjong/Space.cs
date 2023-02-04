@@ -48,7 +48,7 @@ namespace Mahjong
 
 		public Vector3 GetWorldPos()
 		{
-			return new Vector3(pos.x, pos.y * 2, -pos.z/2f);
+			return board.GetWorldPosition(pos);
 		}
 
 		public void ClearTile()

@@ -5,6 +5,7 @@ namespace Mahjong
 {
 	public class MahjongInput : MonoBehaviour
 	{
+		
 		private Camera _camera;
 		private Tile _currentHoveringTile;
 		private Tile _selectedTile;
