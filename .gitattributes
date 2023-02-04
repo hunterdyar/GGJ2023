@@ -1,3 +1,4 @@
 *.jpg filter=lfs diff=lfs merge=lfs -text
 MiscWorking/Dalle/** filter=lfs diff=lfs merge=lfs -text
 MiscWorking/Tree/** filter=lfs diff=lfs merge=lfs -text
+MiscWorking/** filter=lfs diff=lfs merge=lfs -text
