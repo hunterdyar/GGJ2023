@@ -5,7 +5,7 @@ namespace Mahjong
 {
 	public class MahjongInput : MonoBehaviour
 	{
-		
+		[SerializeField] private MahGame _game;
 		private Camera _camera;
 		private Tile _currentHoveringTile;
 		private Tile _selectedTile;

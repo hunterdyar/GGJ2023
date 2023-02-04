@@ -15,10 +15,11 @@ namespace Mahjong
         private bool _isHovering = false;
         private bool selected = false;
         private Color _nonHoverColor = Color.white;
-
+        private RemoveObject _remove;
         private void Awake()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _remove = GetComponent<RemoveObject>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
         public void Init(Space space, Pattern pattern)
@@ -34,7 +35,15 @@ namespace Mahjong
         {
             Space.ClearTile();
             //todo: Animate into oblivion.
-            Destroy(gameObject);
+            if (_remove != null)
+            {
+                _remove.Remove();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
         }
         public void SetHover(bool hovering)
         {

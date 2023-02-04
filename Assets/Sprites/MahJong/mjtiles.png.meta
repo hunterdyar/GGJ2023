@@ -122,10 +122,10 @@ TextureImporter:
       name: mjtiles_0
       rect:
         serializedVersion: 2
-        x: 73
-        y: 766
-        width: 172
-        height: 204
+        x: 71
+        y: 821
+        width: 143
+        height: 150
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,9 +144,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 301
-        y: 773
-        width: 188
-        height: 190
+        y: 822
+        width: 150
+        height: 141
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,9 +165,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 534
-        y: 754
-        width: 188
-        height: 206
+        y: 821
+        width: 146
+        height: 139
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,10 +185,10 @@ TextureImporter:
       name: mjtiles_3
       rect:
         serializedVersion: 2
-        x: 77
-        y: 498
-        width: 196
-        height: 226
+        x: 76
+        y: 583
+        width: 141
+        height: 142
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,9 +207,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 323
-        y: 508
-        width: 176
-        height: 211
+        y: 574
+        width: 140
+        height: 145
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,12 +227,12 @@ TextureImporter:
       name: mjtiles_5
       rect:
         serializedVersion: 2
-        x: 542
-        y: 525
-        width: 185
-        height: 192
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 547
+        y: 581
+        width: 141
+        height: 136
+      alignment: 9
+      pivot: {x: 0.04, y: 0.96}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
