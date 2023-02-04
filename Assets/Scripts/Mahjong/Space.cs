@@ -19,31 +19,41 @@ namespace Mahjong
 					return false;
 				}
 			}
-		
 
+			//is either right free or left free
+			
+			bool rightFree = true;
 			var right = pos + new Vector3Int(1, 0, 0);
 			if (board.TryGetSpace(right, out var rightSpace))
 			{
 				if (!rightSpace.IsEmpty)
 				{
-					return false;
-				}
-			}
-			var left = pos + new Vector3Int(-1, 0, 0);
-			if (board.TryGetSpace(right, out var leftSpace))
-			{
-				if (!leftSpace.IsEmpty)
-				{
-					return false;
+					rightFree = false;
 				}
 			}
 
-			return true;
+			bool leftFree = true;
+
+			var left = pos + new Vector3Int(-1, 0, 0);
+			if (board.TryGetSpace(left, out var leftSpace))
+			{
+				if (!leftSpace.IsEmpty)
+				{
+					leftFree = false;
+				}
+			}
+
+			return leftFree || rightFree;
 		}
 
 		public Vector3 GetWorldPos()
 		{
-			return new Vector3(pos.x, pos.y * 2, pos.z/2f);
+			return new Vector3(pos.x, pos.y * 2, -pos.z/2f);
+		}
+
+		public void ClearTile()
+		{
+			tile = null;
 		}
 	}
 }

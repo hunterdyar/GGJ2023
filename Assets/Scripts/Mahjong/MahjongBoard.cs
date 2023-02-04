@@ -16,6 +16,8 @@ namespace Mahjong
         {
             CreateNewBoard();
         }
+
+        
         public void CreateNewBoard()
         {
             //Create empty board
