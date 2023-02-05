@@ -49,6 +49,9 @@ public class UIMuteButton : MonoBehaviour
             muteMusicIcon,
             muteAllIcon
         };
+
+        _muteState = PlayerPrefs.GetInt("DEERTECTIVE_MUTESTATE", 0);
+        SetMuteState(_muteState);
     }
 
     void Click()
@@ -60,8 +63,14 @@ public class UIMuteButton : MonoBehaviour
             _muteState = 0;
         }
 
-        _image.sprite = _buttonIcons[_muteState];
-        _mixer.TransitionToSnapshots(_snapshots,_weights[_muteState],0.25f);
+        SetMuteState(_muteState);
+        PlayerPrefs.SetInt("DEERTECTIVE_MUTESTATE",_muteState);
+    }
+
+    private void SetMuteState(int m)
+    {
+        _image.sprite = _buttonIcons[m];
+        _mixer.TransitionToSnapshots(_snapshots, _weights[m], 0.25f);
     }
 
     // Update is called once per frame
