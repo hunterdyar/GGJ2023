@@ -13,7 +13,7 @@ namespace Mahjong
         
         private Dictionary<Vector3Int, Space> _board;
         public float aspectRatio;
-        [SerializeField] private float offset;
+        [FormerlySerializedAs("offset")] [SerializeField] private Vector3 layerOffset;
         [SerializeField] private Tile tilePrefab;
         [FormerlySerializedAs("allPatterns")] [SerializeField] private List<Pattern> normalPatterns;
         [SerializeField]
@@ -287,7 +287,7 @@ namespace Mahjong
 
         public Vector3 GetWorldPosition(Vector3Int pos)
         {
-            return transform.position+new Vector3(pos.x * aspectRatio, pos.y, -pos.z / 2f)+new Vector3(-1,1,0)*pos.z*offset;
+            return transform.position+new Vector3(pos.x * aspectRatio, pos.y, -pos.z / 2f)+layerOffset;
         }
 
         public float GetProgressPercentage()
