@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DefaultNamespace.Cutscene_Runner
 {
@@ -9,6 +10,7 @@ namespace DefaultNamespace.Cutscene_Runner
 	{
 		public GameObject master;
 		public TMP_Text Text;
+		public Image image;
 		public AudioSource AudioSource;
 	}
 }

@@ -106,7 +106,7 @@ namespace DefaultNamespace.Cutscene_Runner
 			//Let animations finish.
 			yield return new WaitForSeconds(delay);
 			//load or enable objects
-			yield return StartCoroutine(scene.Routine(_data));
+			yield return StartCoroutine(scene.Routine(_data,this));
 			OnCutsceneEnded?.Invoke();
 		}
 	}
