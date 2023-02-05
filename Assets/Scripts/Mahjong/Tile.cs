@@ -34,14 +34,15 @@ namespace Mahjong
         {
             _isClueTile = isClue;
             _pattern = pattern;
+            _patternRenderer.sortingOrder = space.pos.z*5+2;
+            _baseTileRenderer.sortingOrder = space.pos.z*5+1; 
+            _shadowRenderer.sortingOrder = space.pos.z*5; 
             _patternRenderer.sprite = pattern.TilePattern;
             _baseTileRenderer.sprite = pattern.BaseTile;
             _shadowRenderer.sprite = pattern.Shadow; 
             this.Space = space;
             transform.position = space.GetWorldPos();
-            _patternRenderer.sortingOrder = space.pos.z;
-            // _baseTileRenderer.sortingOrder = space.pos.z; 
-            // _shadowRenderer.sortingOrder = space.pos.z; 
+            
             if (isClue)
             {
                 gameObject.name = "CUTSCENE TILE";
