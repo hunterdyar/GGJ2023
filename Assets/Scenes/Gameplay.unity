@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000c3c9e37a
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -896,9 +896,16 @@ MonoBehaviour:
   tilePrefab: {fileID: 1712558671133042092, guid: 9e77413ecb73b694d940ba3b2b51b693, type: 3}
   normalPatterns:
   - {fileID: 11400000, guid: c61b040a99a31458c90828f6f83b5648, type: 2}
-  - {fileID: 11400000, guid: 3e202d2c227f444bc9e3f36751623595, type: 2}
+  - {fileID: 11400000, guid: 8fbe3e89c79fa4699be4339b498ec21e, type: 2}
+  - {fileID: 11400000, guid: 1585dc1baf2df409ea52b96d03218f49, type: 2}
+  - {fileID: 11400000, guid: cd6797652c7374304a27b6b7dad580e2, type: 2}
+  - {fileID: 11400000, guid: 90f690a35f3d04e699d0aa8032e70e9d, type: 2}
+  - {fileID: 11400000, guid: af441eda4fce7473fbf7e175fb4e7c46, type: 2}
+  - {fileID: 11400000, guid: badfb5aebee4c41b0b17131279967513, type: 2}
+  - {fileID: 11400000, guid: 88838bba5627c43a48eec1d5f87e2411, type: 2}
+  - {fileID: 11400000, guid: 3e1a55ab1b9ab4e1e85a30e840de5731, type: 2}
   ClueTilePatterns:
-  - {fileID: 11400000, guid: c61b040a99a31458c90828f6f83b5648, type: 2}
+  - {fileID: 11400000, guid: dc652bdfef48e47d5b583333631811d6, type: 2}
 --- !u!114 &2004160053
 MonoBehaviour:
   m_ObjectHideFlags: 0
