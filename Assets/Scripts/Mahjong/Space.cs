@@ -11,7 +11,7 @@ namespace Mahjong
 		public bool CanBeSelected()
 		{
 			//is there a piece above us?
-			var above = pos + new Vector3Int(pos.x, pos.x, pos.z + 1);
+			var above = pos + new Vector3Int(pos.x, pos.y, pos.z + 1);
 			if (board.TryGetSpace(above, out var space))
 			{
 				if (!space.IsEmpty)
@@ -23,6 +23,8 @@ namespace Mahjong
 			//is either right free or left free
 			
 			bool rightFree = true;
+			bool leftFree = true;
+			
 			var right = pos + new Vector3Int(1, 0, 0);
 			if (board.TryGetSpace(right, out var rightSpace))
 			{
@@ -31,8 +33,6 @@ namespace Mahjong
 					rightFree = false;
 				}
 			}
-
-			bool leftFree = true;
 
 			var left = pos + new Vector3Int(-1, 0, 0);
 			if (board.TryGetSpace(left, out var leftSpace))

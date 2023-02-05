@@ -38,6 +38,10 @@ namespace Mahjong
             {
                 gameObject.name = "CUTSCENE TILE";
             }
+            else
+            {
+                gameObject.name = "Tile - " + space.pos.z + " - "+ pattern.name;
+            }
         }
 
         public void Remove()

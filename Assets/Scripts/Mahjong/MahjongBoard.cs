@@ -119,7 +119,7 @@ namespace Mahjong
                     }
                 }
             }
-            
+            Debug.Log("Success. Empty:" + NumberEmptyTiles());
         }
 
         private void CreateTile(Pattern pattern, Space space, bool isClue = false)
@@ -154,7 +154,7 @@ namespace Mahjong
                 //we could put pieces on top of the tile, or to the left or right.
                 //are there any pieces above us?
                
-                var above = s.pos + new Vector3Int(s.pos.x, s.pos.x, s.pos.z + 1);
+                var above = s.pos + new Vector3Int(0, 0, 1);
                 if (TryGetSpace(above, out var space))
                 {
                     if (space.IsEmpty)
