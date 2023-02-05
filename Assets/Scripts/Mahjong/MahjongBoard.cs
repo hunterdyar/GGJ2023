@@ -287,7 +287,7 @@ namespace Mahjong
 
         public Vector3 GetWorldPosition(Vector3Int pos)
         {
-            return transform.position+new Vector3(pos.x * aspectRatio, pos.y, -pos.z / 2f)+layerOffset;
+            return transform.position + new Vector3(pos.x * aspectRatio, pos.y, -pos.z / 2f) + layerOffset*pos.z;
         }
 
         public float GetProgressPercentage()

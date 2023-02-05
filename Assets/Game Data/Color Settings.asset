@@ -15,3 +15,5 @@ MonoBehaviour:
   selectTileTint: {r: 1, g: 0.98813164, b: 0.6084906, a: 1}
   hoverLockedTileTint: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
   hoverOpenTileTint: {r: 0.5798772, g: 0.7830189, b: 0.65469563, a: 1}
+  regularOpenTileTint: {r: 1, g: 1, b: 1, a: 1}
+  regularLockedTileTint: {r: 0.81228715, g: 0.840297, b: 0.943, a: 1}

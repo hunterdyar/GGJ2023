@@ -8,5 +8,7 @@ namespace Mahjong
 		public Color selectTileTint;
 		public Color hoverLockedTileTint;
 		public Color hoverOpenTileTint;
+		public Color regularOpenTileTint;
+		public Color regularLockedTileTint;
 	}
 }

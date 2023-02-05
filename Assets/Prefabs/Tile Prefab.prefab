@@ -179,7 +179,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4640122701293151180}
   - component: {fileID: 1712558671133042092}
-  - component: {fileID: -2594935247216182935}
   - component: {fileID: 2666045965223793193}
   m_Layer: 0
   m_Name: Tile Prefab
@@ -216,19 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a0f9fdf25f3ef4aa44c0564c507140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colorSettings: {fileID: 11400000, guid: 81e39c3e0708fe548804dca1f375a768, type: 2}
---- !u!114 &-2594935247216182935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4640122701293151178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f983322f26bb4d98be815abbf0fb1444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   ease:
     serializedVersion: 2
     m_Curve:
@@ -253,7 +239,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  animationDuration: 0.75
+  _colorSettings: {fileID: 11400000, guid: 81e39c3e0708fe548804dca1f375a768, type: 2}
+  _patternRenderer: {fileID: 0}
+  _baseTileRenderer: {fileID: 0}
+  _shadowRenderer: {fileID: 0}
 --- !u!61 &2666045965223793193
 BoxCollider2D:
   m_ObjectHideFlags: 0

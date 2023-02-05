@@ -10,6 +10,7 @@ namespace Mahjong
 		public static Action OnGameBegin;
 		public static Action<GameState> OnGameStateChange;
 		public static Action OnClueTileFound;
+		public static Action OnAnyTilesRemoved;
 		public GameState GameState => _gameState;
 		private GameState _gameState = GameState.Init;
 		private MahjongBoard _mahjongBoard;
@@ -67,6 +68,7 @@ namespace Mahjong
 				a.Remove();
 				b.Remove();
 				_tilePairsRemoved++;
+				OnAnyTilesRemoved?.Invoke();
 				if (a.IsClueTile && b.IsClueTile)
 				{
 					OnClueTileFound?.Invoke();
