@@ -16,24 +16,31 @@ namespace DefaultNamespace.Cutscene_Runner
 		public IEnumerator Routine(CutsceneReferences data)
 		{
 			Debug.Log("Cutscene started");
+			
+			//Activate the HUD gameObject. We Would do a fade in here.
 			data.master.SetActive(true);
 			float duration = 0;
+			
+			//play an audio clip
 			if (audioClip != null)
 			{
 				data.AudioSource.clip = audioClip;
 				data.AudioSource.Play();
 				duration = audioClip.length;
 			}
-
 			float audioStartTime = Time.time;
 			
+			//Set the Primary background image.
+			//Set ... other images...?
+			
 			data.Text.text = cutsceneTempText;
-			yield return new WaitForSeconds(2);
 			
-			
+			//wait for audio seconds.
+			yield return new WaitForSeconds(duration);
+
 			data.master.SetActive(false);
 
-			//Finish playing the clip as needed.
+			//Finish playing the clip if needed.
 			if (audioClip != null)
 			{
 				while (data.AudioSource.isPlaying)
