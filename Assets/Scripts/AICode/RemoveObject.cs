@@ -20,7 +20,7 @@ public class RemoveObject : MonoBehaviour
 	IEnumerator AnimateOut()
 	{
 		_spriteRenderer.sortingOrder = 10;//jump to top.
-		
+		_spriteRenderer.color = Color.white;
 		Vector3 scale = transform.localScale;
 		Vector3 scaleEnd = scale * 2;
 		Color col = _spriteRenderer.color;
