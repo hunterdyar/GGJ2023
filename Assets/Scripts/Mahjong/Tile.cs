@@ -12,7 +12,9 @@ namespace Mahjong
         public Space Space;
         public Pattern Pattern => _pattern;
         private Pattern _pattern;
-        private SpriteRenderer _spriteRenderer;
+        private SpriteRenderer _patternRenderer;
+        private SpriteRenderer _baseTileRenderer;
+        private SpriteRenderer _shadowRenderer;
         private bool _isHovering = false;
         private bool selected = false;
         private Color _nonHoverColor = Color.white;
@@ -23,17 +25,23 @@ namespace Mahjong
         private void Awake()
         {
             _remove = GetComponent<RemoveObject>();
-            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            _patternRenderer = (SpriteRenderer)GameObject.Find("Pattern").GetComponent("SpriteRenderer");
+            _baseTileRenderer = (SpriteRenderer)GameObject.Find("BaseTile").GetComponent("SpriteRenderer");
+            _shadowRenderer = (SpriteRenderer)GameObject.Find("Shadow").GetComponent("SpriteRenderer");
         }
 
         public void Init(Space space, Pattern pattern, bool isClue = false)
         {
             _isClueTile = isClue;
             _pattern = pattern;
-            _spriteRenderer.sprite = pattern.Sprite;
+            _patternRenderer.sprite = pattern.TilePattern;
+            _baseTileRenderer.sprite = pattern.BaseTile;
+            _shadowRenderer.sprite = pattern.Shadow; 
             this.Space = space;
             transform.position = space.GetWorldPos();
-            _spriteRenderer.sortingOrder = space.pos.z;
+            _patternRenderer.sortingOrder = space.pos.z;
+            _baseTileRenderer.sortingOrder = space.pos.z-1; 
+            _shadowRenderer.sortingOrder = space.pos.z-2; 
             if (isClue)
             {
                 gameObject.name = "CUTSCENE TILE";
@@ -64,13 +72,13 @@ namespace Mahjong
                 _isHovering = hovering;
                 if (!_isHovering)
                 {
-                    _spriteRenderer.color = _nonHoverColor;
+                    _patternRenderer.color = _nonHoverColor;
                 }
                 else
                 {
                     bool selectable = Space.CanBeSelected();
                     Color col = selectable ? _colorSettings.hoverOpenTileTint : _colorSettings.hoverLockedTileTint;
-                    _spriteRenderer.color = col;
+                    _patternRenderer.color = col;
                 }
             }
         }
@@ -79,7 +87,7 @@ namespace Mahjong
         {
             selected = sel;
             _nonHoverColor = selected ? _colorSettings.selectTileTint : Color.white;
-            _spriteRenderer.color = _nonHoverColor;
+            _patternRenderer.color = _nonHoverColor;
         }
 
         public bool CanSelect()

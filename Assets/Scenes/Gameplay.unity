@@ -895,15 +895,10 @@ MonoBehaviour:
   layerOffset: {x: 0, y: 0, z: 0}
   tilePrefab: {fileID: 1712558671133042092, guid: 9e77413ecb73b694d940ba3b2b51b693, type: 3}
   normalPatterns:
-  - {fileID: 11400000, guid: dd04e3f6aed4b0246953d0e92059ea51, type: 2}
-  - {fileID: 11400000, guid: 733ac566a4bedfe40843e4ffe9df537d, type: 2}
-  - {fileID: 11400000, guid: 122d8c5f76e26f44bbbdeec91f838369, type: 2}
-  - {fileID: 11400000, guid: d3fe98996b456484db449f973c1808db, type: 2}
-  - {fileID: 11400000, guid: 9fa9408d64fea534bbe1b9134af1d647, type: 2}
-  - {fileID: 11400000, guid: 56b08b38663e0804683fab46f62361ac, type: 2}
-  - {fileID: 11400000, guid: 04e507467fac1bd4e8a29f2c0a7aec17, type: 2}
+  - {fileID: 11400000, guid: c61b040a99a31458c90828f6f83b5648, type: 2}
+  - {fileID: 11400000, guid: 3e202d2c227f444bc9e3f36751623595, type: 2}
   ClueTilePatterns:
-  - {fileID: 11400000, guid: 0af1d0def413a2240b27f1c93b774ae6, type: 2}
+  - {fileID: 11400000, guid: c61b040a99a31458c90828f6f83b5648, type: 2}
 --- !u!114 &2004160053
 MonoBehaviour:
   m_ObjectHideFlags: 0
