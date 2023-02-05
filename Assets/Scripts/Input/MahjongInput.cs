@@ -10,6 +10,16 @@ namespace Mahjong
 		private Tile _currentHoveringTile;
 		private Tile _selectedTile;
 		private bool _inputEnabled;
+		[SerializeField] private AudioClip _matchClip;
+		[SerializeField] private AudioClip _errorClip;
+		[SerializeField] private AudioClip _selectClip;
+		[SerializeField] private AudioSource _source;
+
+		private void Awake()
+		{
+			_source = GetComponent<AudioSource>();
+		}
+
 		private void Start()
 		{
 			_camera = Camera.main;
@@ -66,6 +76,10 @@ namespace Mahjong
 							//Select the tile.
 							_currentHoveringTile.SetSelected(true);
 							_selectedTile = _currentHoveringTile;
+							if (_selectClip != null)
+							{
+								_source.PlayOneShot(_selectClip);
+							}
 						}
 					}
 				}
@@ -84,12 +98,20 @@ namespace Mahjong
 			{
 				_currentHoveringTile = null;
 				_selectedTile = null;
+				if (_matchClip != null)
+				{
+					_source.PlayOneShot(_matchClip);
+				}
 			}
 			else
 			{
 				//ERR
 				_selectedTile.SetSelected(false);
 				_selectedTile = null;
+				if (_errorClip != null)
+				{
+					_source.PlayOneShot(_errorClip);
+				}
 			}
 		}
 

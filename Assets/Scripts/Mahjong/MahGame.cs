@@ -87,7 +87,7 @@ namespace Mahjong
 		private void CheckForGameOver()
 		{
 			float progress = _mahjongBoard.GetProgressPercentage();
-			if (progress >= 1)
+			if (progress >= 1-Mathf.Epsilon)
 			{
 				SetGameState(GameState.End);
 			}
