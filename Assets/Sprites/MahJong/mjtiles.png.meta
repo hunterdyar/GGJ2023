@@ -115,6 +115,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -122,10 +134,10 @@ TextureImporter:
       name: mjtiles_0
       rect:
         serializedVersion: 2
-        x: 71
+        x: 72
         y: 821
         width: 143
-        height: 150
+        height: 151
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,12 +239,12 @@ TextureImporter:
       name: mjtiles_5
       rect:
         serializedVersion: 2
-        x: 547
-        y: 581
-        width: 141
-        height: 136
+        x: 544
+        y: 576
+        width: 145
+        height: 143
       alignment: 9
-      pivot: {x: 0.04, y: 0.96}
+      pivot: {x: 0.49639806, y: 0.51239955}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,12 +261,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 90
-        y: 253
-        width: 170
-        height: 196
+        y: 301
+        width: 134
+        height: 148
       alignment: 1
       pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -270,9 +282,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 323
-        y: 262
-        width: 187
-        height: 184
+        y: 312
+        width: 151
+        height: 134
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -291,9 +303,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 548
-        y: 262
-        width: 187
-        height: 184
+        y: 312
+        width: 151
+        height: 134
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
