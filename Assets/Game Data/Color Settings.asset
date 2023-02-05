@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b184e3fc564ac68b6e91538216f557, type: 3}
   m_Name: Color Settings
   m_EditorClassIdentifier: 
-  selectTileTint: {r: 1, g: 0.98813164, b: 0.6084906, a: 1}
-  hoverLockedTileTint: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
-  hoverOpenTileTint: {r: 0.5798772, g: 0.7830189, b: 0.65469563, a: 1}
-  regularOpenTileTint: {r: 1, g: 1, b: 1, a: 1}
-  regularLockedTileTint: {r: 0.81228715, g: 0.840297, b: 0.943, a: 1}
+  selectTileTint: {r: 1, g: 1, b: 1, a: 1}
+  hoverLockedTileTint: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
+  hoverOpenTileTint: {r: 0.9852154, g: 0.9669811, b: 1, a: 1}
+  regularOpenTileTint: {r: 0.990566, g: 0.81768423, b: 0.95913297, a: 1}
+  regularLockedTileTint: {r: 0.8067434, g: 0.8113208, b: 0.5855287, a: 1}
