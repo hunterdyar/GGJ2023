@@ -107,10 +107,24 @@ namespace Mahjong
 					SetHovering(tile);
 				}
 			}
+			else
+			{
+				SetHovering(null);
+			}
 		}
 
 		private void SetHovering(Tile tile)
 		{
+			if (tile == null)
+			{
+				if (_currentHoveringTile != null)
+				{
+					_currentHoveringTile.SetHover(false);
+					_currentHoveringTile = null;
+				}
+				return;
+			}
+			//if not null...
 			if (_currentHoveringTile == tile)
 			{
 				return;
