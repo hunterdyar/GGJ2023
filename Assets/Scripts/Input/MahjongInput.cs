@@ -9,15 +9,34 @@ namespace Mahjong
 		private Camera _camera;
 		private Tile _currentHoveringTile;
 		private Tile _selectedTile;
+		private bool _inputEnabled;
 		private void Start()
 		{
 			_camera = Camera.main;
 		}
 
+		private void OnEnable()
+		{
+			MahGame.OnGameStateChange += OnGameStateChange;
+		}
+
+		private void OnDisable()
+		{
+			MahGame.OnGameStateChange -= OnGameStateChange;
+		}
+
+		private void OnGameStateChange(GameState state)
+		{
+			_inputEnabled = state == GameState.Gameplay;
+		}
+
 		void Update()
 		{
-			HoverTick();
-			SelectTick();
+			if (_inputEnabled)
+			{
+				HoverTick();
+				SelectTick();
+			}
 		}
 
 		private void SelectTick()
@@ -37,7 +56,6 @@ namespace Mahjong
 					//Select the new tile ("green")
 					if (_currentHoveringTile.CanSelect())
 					{
-						
 						//try matching a tile.
 						if (_selectedTile != null)
 						{
@@ -56,14 +74,14 @@ namespace Mahjong
 
 		private void TryMatch(Tile a, Tile b)
 		{
+			//don't error, which will clear previous.
 			if (a == b)
 			{
 				return;
 			}
-			if (a.Pattern.Matches(b.Pattern))
+			
+			if (_game.TryMatchTiles(a,b))
 			{
-				a.Remove();
-				b.Remove();
 				_currentHoveringTile = null;
 				_selectedTile = null;
 			}

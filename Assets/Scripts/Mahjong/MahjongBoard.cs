@@ -254,5 +254,12 @@ namespace Mahjong
         {
             return transform.position+new Vector3(pos.x * aspectRatio, pos.y, -pos.z / 2f)+new Vector3(-1,1,0)*pos.z*offset;
         }
+
+        public float GetProgressPercentage()
+        {
+            float numSpaces = _board.Count;
+            float numTiles = _board.Count(x => !x.Value.IsEmpty);
+            return 1-(numTiles / numSpaces);
+        }
     }
 }
