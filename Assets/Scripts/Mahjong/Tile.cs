@@ -8,6 +8,7 @@ namespace Mahjong
 {
     public class Tile : MonoBehaviour
     {
+        [SerializeField] private ColorSettings _colorSettings;
         public Space Space;
         public Pattern Pattern => _pattern;
         private Pattern _pattern;
@@ -65,7 +66,7 @@ namespace Mahjong
                 else
                 {
                     bool selectable = Space.CanBeSelected();
-                    Color col = selectable ? Color.green : Color.grey;
+                    Color col = selectable ? _colorSettings.hoverOpenTileTint : _colorSettings.hoverLockedTileTint;
                     _spriteRenderer.color = col;
                 }
             }
@@ -74,7 +75,7 @@ namespace Mahjong
         public void SetSelected(bool sel)
         {
             selected = sel;
-            _nonHoverColor = selected ? Color.yellow : Color.white;
+            _nonHoverColor = selected ? _colorSettings.selectTileTint : Color.white;
             _spriteRenderer.color = _nonHoverColor;
         }
 
