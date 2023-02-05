@@ -151,13 +151,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _openingCutscene: {fileID: 0}
   _clueCutscenes:
-  - {fileID: 11400000, guid: 83d02a4944055a14f8d46d414cb52b6f, type: 2}
+  - {fileID: 11400000, guid: cf8462cd97c5e264faaba90950f7eb8b, type: 2}
   - {fileID: 11400000, guid: 83d02a4944055a14f8d46d414cb52b6f, type: 2}
   - {fileID: 11400000, guid: 83d02a4944055a14f8d46d414cb52b6f, type: 2}
   _closingCutscene: {fileID: 0}
   _data:
     master: {fileID: 4883878346778240756}
     Text: {fileID: 4883878348061072380}
+    image: {fileID: 4883878347346436319}
     AudioSource: {fileID: 0}
 --- !u!1 &4883878347346436313
 GameObject:

@@ -26,15 +26,15 @@ namespace Mahjong
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
-        public void Init(Space space, Pattern pattern, bool isCutscene = false)
+        public void Init(Space space, Pattern pattern, bool isClue = false)
         {
-            _isClueTile = isCutscene;
+            _isClueTile = isClue;
             _pattern = pattern;
             _spriteRenderer.sprite = pattern.Sprite;
             this.Space = space;
             transform.position = space.GetWorldPos();
             _spriteRenderer.sortingOrder = space.pos.z;
-            if (isCutscene)
+            if (isClue)
             {
                 gameObject.name = "CUTSCENE TILE";
             }
@@ -43,7 +43,6 @@ namespace Mahjong
         public void Remove()
         {
             Space.ClearTile();
-            //todo: Animate into oblivion.
             if (_remove != null)
             {
                 _remove.Remove();
