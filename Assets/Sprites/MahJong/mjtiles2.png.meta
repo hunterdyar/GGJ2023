@@ -155,12 +155,12 @@ TextureImporter:
       name: mjtiles2_1
       rect:
         serializedVersion: 2
-        x: 269
-        y: 812
-        width: 143
-        height: 157
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 238
+        y: 784
+        width: 211
+        height: 215
+      alignment: 9
+      pivot: {x: 0.4351513, y: 0.5271217}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -303,11 +303,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 275
-        y: 619
-        width: 136
-        height: 149
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 612
+        width: 145
+        height: 156
+      alignment: 9
+      pivot: {x: 0.48314378, y: 0.5391701}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -769,7 +769,9 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: f25363274c9534b208a4bbfa860bb2a1, type: 3}
+      name: _Emission
     nameFileIdTable:
       mjtiles2_23: 1001664585
       mjtiles2_10: -883168955
