@@ -10,55 +10,103 @@ namespace DefaultNamespace.Cutscene_Runner
 		public static Action OnCutsceneStarted;
 		public static Action OnCutsceneEnded;
 		
-		[SerializeField] private Cutscene[] _cutscenes;
-		[SerializeField] private string CutsceneScene;
+		public static int ClueCutsceneCount;//dont yell at me it's late
+		private int _clueCutsceneIndex;
+		
+		[Header("Config. All Optional.")] [SerializeField] private Cutscene _openingCutscene;
+		[SerializeField] private Cutscene[] _clueCutscenes;
+		[SerializeField] private Cutscene _closingCutscene;
+
+		//
+		[Header("Scene References")] [SerializeField]
+		private CutsceneReferences _data;
+		
 		private void Awake()
 		{
-			DontDestroyOnLoad(gameObject);
 			InitCutscenes();
+			
+			_data.master.SetActive(false);
 		}
 
 		private void InitCutscenes()
 		{
-			foreach (var cut in _cutscenes)
+			//static refs
+			ClueCutsceneCount = _clueCutscenes.Length;
+			_clueCutsceneIndex = 0;
+			//
+			if (_openingCutscene != null)
+			{
+				_openingCutscene.played = false;
+			}
+
+			foreach (var cut in _clueCutscenes)
 			{
 				cut.played = false;
+			}
+
+			if (_closingCutscene != null)
+			{
+				_closingCutscene.played = false;
 			}
 		}
 
 		private void OnEnable()
 		{
-			MahGame.OnProgressMade += OnProgressMade;
+			MahGame.OnClueTileFound += OnClueTileFound;
+			MahGame.OnGameStateChange += OnGameStateChange;
+			MahGame.OnGameBegin += OnGameBegin;
 		}
+
 		private void OnDisable()
 		{
-			MahGame.OnProgressMade -= OnProgressMade;
+			MahGame.OnClueTileFound -= OnClueTileFound;
+			MahGame.OnGameStateChange -= OnGameStateChange;
+			MahGame.OnGameBegin -= OnGameBegin;
+
 		}
-		private void OnProgressMade(float progress, int tilesRemoved)
+
+		private void OnGameBegin()
 		{
-			foreach (var cutscene in _cutscenes)
+			if (_openingCutscene != null)
 			{
-				// if(cutscene.levelToPlayOn )//current
-				if (cutscene.progressToPlayAfter >= progress)
-				{
-					PlayCutscene(cutscene);
-					return;
-				}
+				WaitThenPlayCutscene(_openingCutscene, 0);
 			}
 		}
 
-		private void PlayCutscene(Cutscene cutscene)
+		private void OnGameStateChange(GameState obj)
+		{
+			if (obj == GameState.End && _closingCutscene != null)
+			{
+				WaitThenPlayCutscene(_closingCutscene);
+			}
+		}
+
+		private void OnClueTileFound()
+		{
+			if (_clueCutsceneIndex < _clueCutscenes.Length)
+			{
+				WaitThenPlayCutscene(_clueCutscenes[_clueCutsceneIndex]);
+				_clueCutsceneIndex++;
+			}
+			else
+			{
+				Debug.LogError("wrong number of cutscene tiles found");
+			}
+		}
+
+		private void WaitThenPlayCutscene(Cutscene cutscene,float delay = 0.5f)
 		{
 			OnCutsceneStarted?.Invoke();
 			cutscene.played = true;
-			StartCoroutine(DoPlayCutscene(cutscene));
+			StartCoroutine(DoWaitThenPlayCutscene(delay,cutscene));
 		}
 
-		private IEnumerator DoPlayCutscene(Cutscene scene)
+		private IEnumerator DoWaitThenPlayCutscene(float delay,Cutscene scene)
 		{
+			//Let animations finish.
+			yield return new WaitForSeconds(delay);
 			//load or enable objects
-			
-			yield return StartCoroutine(Cutscene.Routine());
+			yield return StartCoroutine(scene.Routine(_data));
 			OnCutsceneEnded?.Invoke();
 		}
 	}

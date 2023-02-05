@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using DefaultNamespace.Cutscene_Runner;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Mahjong
 {
@@ -13,8 +15,11 @@ namespace Mahjong
         public float aspectRatio;
         [SerializeField] private float offset;
         [SerializeField] private Tile tilePrefab;
-        [SerializeField] private List<Pattern> allPatterns;
-        
+        [FormerlySerializedAs("allPatterns")] [SerializeField] private List<Pattern> normalPatterns;
+        [SerializeField]
+        private List<Pattern> ClueTilePatterns;
+
+        private int numberClueTiles => CutsceneRunner.ClueCutsceneCount;//SORRY! auto-property to static? haha gross. 
         void Start()
         {
             CreateNewBoard();
@@ -23,6 +28,7 @@ namespace Mahjong
         
         public void CreateNewBoard()
         {
+            int clueTilesSpawned = 0;
             //Create empty board
             _board = new Dictionary<Vector3Int, Space>();
             foreach (var pos in GetLayout())
@@ -38,19 +44,19 @@ namespace Mahjong
             //Get all "addable" spaces.
             
             //first add 4 tiles to our starting center. 
-            var startPat = allPatterns[Random.Range(0, allPatterns.Count)];
+            var startPat = normalPatterns[Random.Range(0, normalPatterns.Count)];
             _board.TryGetValue(Vector3Int.zero, out var start1);
             CreateTile(startPat, start1);
             _board.TryGetValue(new Vector3Int(1,0,0), out var start2);
             CreateTile(startPat, start2);
             //first add 4 tiles to our starting center.
-            var startPat2 = allPatterns[Random.Range(0, allPatterns.Count)];
+            var startPat2 = normalPatterns[Random.Range(0, normalPatterns.Count)];
             _board.TryGetValue(new Vector3Int(1, 1, 0), out var start3);
             CreateTile(startPat2, start3);
             _board.TryGetValue(new Vector3Int(0, 1, 0), out var start4);
             CreateTile(startPat2, start4);
             //
-            
+            int tileCount = _board.Count;
             //While we still have spaces to add tiles to
             int emptyTiles = NumberEmptyTiles();
             int previousEmptyTileCount = 1000000;
@@ -58,8 +64,37 @@ namespace Mahjong
             while (NumberEmptyTiles() > 2 && NumberEmptyTiles() != previousEmptyTileCount && !escape)
             {
                 previousEmptyTileCount = NumberEmptyTiles();
+                
+                //should we spawn a clue tile in?
+                float progress = 1 - (previousEmptyTileCount / (float)tileCount);
+                float cluePercentDistribution = 1f / (numberClueTiles+1);
+                float percentageToSpawnClueAt = clueTilesSpawned * cluePercentDistribution;//0%,33%,66% for 3 clues
+                //:[
+                bool shouldBeClueTile = ((progress > percentageToSpawnClueAt) && clueTilesSpawned < numberClueTiles);
+                if (shouldBeClueTile)
+                {
+                    Pattern p = ClueTilePatterns[Random.Range(0, ClueTilePatterns.Count)];
+                    var possible = GetAddableSpaces();
+                    if (possible.Count >= 2)
+                    {
+                        var a = possible[Random.Range(0, possible.Count)];
+                        var b = a;
+                        while (b == a)
+                        {
+                            b = possible[Random.Range(0, possible.Count)];
+                        }
+                        CreateTile(p,a,true);
+                        CreateTile(p,b,true);
+                        clueTilesSpawned++;
+                    }
+                    else
+                    {
+                        Debug.LogError("Could not spawn clue tiles! Frick");
+                    }
+                    continue;
+                }
                 //clone the list to a new bag.
-                var patternBag = new List<Pattern>(allPatterns);
+                var patternBag = new List<Pattern>(normalPatterns);
                 patternBag.Shuffle();
                 foreach (var pattern in patternBag)
                 {
@@ -87,13 +122,13 @@ namespace Mahjong
             
         }
 
-        private void CreateTile(Pattern pattern, Space space)
+        private void CreateTile(Pattern pattern, Space space, bool isClue = false)
         {   
             //instantiate prefab.
             var t = Instantiate(tilePrefab);
             
             //give it the pattern
-            t.Init(space,pattern);
+            t.Init(space,pattern,isClue);
 
             //un-empty the tile.
             space.tile = t;

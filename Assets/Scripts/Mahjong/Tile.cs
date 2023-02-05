@@ -16,19 +16,27 @@ namespace Mahjong
         private bool selected = false;
         private Color _nonHoverColor = Color.white;
         private RemoveObject _remove;
+        public bool IsClueTile => _isClueTile;
+        private bool _isClueTile;
+        
         private void Awake()
         {
             _remove = GetComponent<RemoveObject>();
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
-        public void Init(Space space, Pattern pattern)
+        public void Init(Space space, Pattern pattern, bool isCutscene = false)
         {
+            _isClueTile = isCutscene;
             _pattern = pattern;
             _spriteRenderer.sprite = pattern.Sprite;
             this.Space = space;
             transform.position = space.GetWorldPos();
             _spriteRenderer.sortingOrder = space.pos.z;
+            if (isCutscene)
+            {
+                gameObject.name = "CUTSCENE TILE";
+            }
         }
 
         public void Remove()

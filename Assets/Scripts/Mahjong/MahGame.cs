@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using DefaultNamespace.Cutscene_Runner;
 using UnityEngine;
 
@@ -6,11 +7,9 @@ namespace Mahjong
 {
 	public class MahGame : MonoBehaviour
 	{
+		public static Action OnGameBegin;
 		public static Action<GameState> OnGameStateChange;
-		/// <summary>
-		/// When removing a tile, broadcasts the progress (percentage) and total number tiles removed so far.
-		/// </summary>
-		public static Action<float, int> OnProgressMade;
+		public static Action OnClueTileFound;
 		public GameState GameState => _gameState;
 		private GameState _gameState = GameState.Init;
 		private MahjongBoard _mahjongBoard;
@@ -44,12 +43,17 @@ namespace Mahjong
 			SetGameState(GameState.Gameplay);
 		}
 
-		private void Start()
+		private IEnumerator Start()
 		{
 			//Starting Cutscene?
 			_tilePairsRemoved = 0;
 			_progress = 0;
 			SetGameState(GameState.Gameplay);
+			//hacky wait till all awakes AND starts have been called to invoke event.
+			//im SORRY OKAY!?!?!
+			yield return null;
+			OnGameBegin?.Invoke();
+			//0,0
 		}
 
 		public bool TryMatchTiles(Tile a, Tile b)
@@ -63,7 +67,13 @@ namespace Mahjong
 				a.Remove();
 				b.Remove();
 				_tilePairsRemoved++;
-				AfterTilesRemoved();
+				if (a.IsClueTile && b.IsClueTile)
+				{
+					OnClueTileFound?.Invoke();
+				}
+
+				CheckForGameOver();
+
 				return true;
 			}
 			else
@@ -72,13 +82,13 @@ namespace Mahjong
 			}
 		}
 
-		private void AfterTilesRemoved()
+		private void CheckForGameOver()
 		{
-			//calculate percentage of win. should we play a cutscene?
-			_progress = _mahjongBoard.GetProgressPercentage();
-			//broadcast event of win.
-			Debug.Log(_progress);
-			//check if win
+			float progress = _mahjongBoard.GetProgressPercentage();
+			if (progress >= 1)
+			{
+				SetGameState(GameState.End);
+			}
 		}
 
 		public void SetGameState(GameState newState)
